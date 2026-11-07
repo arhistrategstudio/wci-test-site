@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How it works — WCI</title>
+<meta name="description" content="The WCI V1 workflow: from a Terraform pull request to a security answer posted in the PR.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="How it works — WCI">
+<meta property="og:description" content="The WCI V1 workflow: from a Terraform pull request to a security answer posted in the PR.">
+<meta property="og:image" content="assets/img/hero.webp">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="WCI home"><img src="assets/img/logo.png" alt="" width="36" height="36"><span>WCI</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav id="site-nav" class="nav" aria-label="Main"><a href="index.html">Home</a><a href="how-it-works.html" aria-current="page">How it works</a><a href="detect.html">Detect</a><a href="understand.html">Understand</a><a href="respond.html">Respond</a><a href="continuous.html">Continuous</a><a href="analysis.html">Analysis model</a><a href="coverage.html">Coverage</a><a href="roadmap.html">Roadmap</a></nav>
+  </div>
+</header>
+<main id="content">
+<section class="page"><div class="wrap stack">
+<div class="page-head"><p class="eyebrow">01 / How it works</p><h1>From pull request <span class="soft">to security answer.</span></h1><p class="lead">A small Terraform change can open a service to the internet or widen a role's permissions, and this is easy to miss in a normal code review.</p></div>
+<div class="steps"><div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5v7"/><path d="M18 15.5V9a3 3 0 0 0-3-3h-4"/><path d="m13 3.5-2.5 2.5L13 8.5"/></svg></div><span class="n">Step 1</span><p>A developer changes infrastructure code and opens a pull request.</p></div><div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="7" height="16" rx="2"/><rect x="14" y="4" width="7" height="16" rx="2"/><path d="M10 12h4"/></svg></div><span class="n">Step 2</span><p>WCI receives the change and compares the before and after security state.</p></div><div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div><span class="n">Step 3</span><p>WCI identifies security-relevant changes and evaluates their risk.</p></div><div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></div><span class="n">Step 4</span><p>WCI posts the result as a comment on the pull request.</p></div></div>
+<div class="grid2">
+  <div class="card ill-card">
+    <div class="label"><strong>Change-aware</strong><span>One change, one answer.</span></div>
+    <div class="flow" style="margin-top:56px">
+      <span class="node">Terraform change</span><span class="arrow" aria-hidden="true">→</span>
+      <span class="node on">WCI</span><span class="arrow" aria-hidden="true">→</span>
+      <span class="node">PR comment</span>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Every result states</h3>
+    <ul class="points"><li><span class="dot" aria-hidden="true"></span><span>What changed</span></li><li><span class="dot" aria-hidden="true"></span><span>The security impact</span></li><li><span class="dot" aria-hidden="true"></span><span>The risk level</span></li><li><span class="dot" aria-hidden="true"></span><span>Before and after values</span></li><li><span class="dot" aria-hidden="true"></span><span>Why it matters</span></li><li><span class="dot" aria-hidden="true"></span><span>The resource or identity involved</span></li></ul>
+  </div>
+</div>
+<p class="note">Scanners find misconfigurations. WCI focuses on what one specific change does to security — it does not compete on rule count.</p>
+</div></section>
+<div class="wrap"><nav class="pager" aria-label="Pages"><a href="index.html"><span class="lbl">← Previous</span><span class="ttl">Home</span></a><a class="next" href="detect.html"><span class="lbl">Next →</span><span class="ttl">Detect</span></a></nav></div>
+</main>
+<footer class="site-footer">
+  <div class="wrap"><span>WAYNE CLOUD INFRASTRUCTURE</span><span>Open source. Early development. Follow along.</span></div>
+</footer>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

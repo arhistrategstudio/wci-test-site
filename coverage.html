@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coverage — WCI</title>
+<meta name="description" content="What WCI V1 checks, its technology scope, and what is deliberately left out.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="Coverage — WCI">
+<meta property="og:description" content="What WCI V1 checks, its technology scope, and what is deliberately left out.">
+<meta property="og:image" content="assets/img/hero.webp">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="WCI home"><img src="assets/img/logo.png" alt="" width="36" height="36"><span>WCI</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav id="site-nav" class="nav" aria-label="Main"><a href="index.html">Home</a><a href="how-it-works.html">How it works</a><a href="detect.html">Detect</a><a href="understand.html">Understand</a><a href="respond.html">Respond</a><a href="continuous.html">Continuous</a><a href="analysis.html">Analysis model</a><a href="coverage.html" aria-current="page">Coverage</a><a href="roadmap.html">Roadmap</a></nav>
+  </div>
+</header>
+<main id="content">
+<section class="page"><div class="wrap stack">
+<div class="page-head"><p class="eyebrow">07 / Coverage</p><h1>What V1 checks. <span class="soft">And what it doesn't.</span></h1><p class="lead">A focused first release: one cloud, one IaC workflow, the changes that matter most.</p></div>
+<div class="grid2">
+  <div class="card">
+    <h3>What V1 checks</h3>
+    <ul class="points"><li><span class="dot" aria-hidden="true"></span><span>Security misconfigurations</span></li><li><span class="dot" aria-hidden="true"></span><span>Permission changes</span></li><li><span class="dot" aria-hidden="true"></span><span>Internet exposure</span></li><li><span class="dot" aria-hidden="true"></span><span>Network changes</span></li><li><span class="dot" aria-hidden="true"></span><span>Resource access changes</span></li><li><span class="dot" aria-hidden="true"></span><span>Security posture changes, before versus after</span></li></ul>
+  </div>
+  <div class="card">
+    <h3>Technology scope</h3>
+    <ul class="points"><li><span class="dot" aria-hidden="true"></span><span>Terraform, and OpenTofu where compatibility can be verified</span></li><li><span class="dot" aria-hidden="true"></span><span>AWS as the first cloud provider</span></li><li><span class="dot" aria-hidden="true"></span><span>GitHub pull requests and GitHub Actions</span></li></ul>
+    <div class="chips"><span class="chip">Terraform</span><span class="chip">AWS</span><span class="chip">GitHub</span></div>
+  </div>
+  <div class="card">
+    <h3>Not in V1</h3>
+    <ul class="points"><li><span class="dot" aria-hidden="true"></span><span>Kubernetes, Azure, GCP</span></li><li><span class="dot" aria-hidden="true"></span><span>A SaaS dashboard</span></li><li><span class="dot" aria-hidden="true"></span><span>Slack or other communication integrations</span></li><li><span class="dot" aria-hidden="true"></span><span>Automated remediation or any automatic infrastructure change</span></li><li><span class="dot" aria-hidden="true"></span><span>Blocking deployments by default</span></li></ul>
+  </div>
+  <div class="card">
+    <h3>Known gaps</h3>
+    <p class="body">Not evaluated in V1 — a missing finding here does not mean safe. These are recorded as unsupported or analysis-incomplete.</p>
+    <ul class="points"><li><span class="dot" aria-hidden="true"></span><span>IPv6 <code>::/0</code></span></li><li><span class="dot" aria-hidden="true"></span><span>Standalone <code>aws_vpc_security_group_ingress_rule</code></span></li><li><span class="dot" aria-hidden="true"></span><span>Security-group references and prefix lists</span></li><li><span class="dot" aria-hidden="true"></span><span>Unknown values</span></li></ul>
+  </div>
+</div>
+</div></section>
+<div class="wrap"><nav class="pager" aria-label="Pages"><a href="analysis.html"><span class="lbl">← Previous</span><span class="ttl">Analysis model</span></a><a class="next" href="roadmap.html"><span class="lbl">Next →</span><span class="ttl">Roadmap</span></a></nav></div>
+</main>
+<footer class="site-footer">
+  <div class="wrap"><span>WAYNE CLOUD INFRASTRUCTURE</span><span>Open source. Early development. Follow along.</span></div>
+</footer>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

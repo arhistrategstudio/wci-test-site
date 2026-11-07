@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Analysis model — WCI</title>
+<meta name="description" content="How WCI separates observed facts from derived and context-dependent claims, with an example finding.">
+<meta name="theme-color" content="#0a0a0a">
+<meta property="og:title" content="Analysis model — WCI">
+<meta property="og:description" content="How WCI separates observed facts from derived and context-dependent claims, with an example finding.">
+<meta property="og:image" content="assets/img/hero.webp">
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="WCI home"><img src="assets/img/logo.png" alt="" width="36" height="36"><span>WCI</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav id="site-nav" class="nav" aria-label="Main"><a href="index.html">Home</a><a href="how-it-works.html">How it works</a><a href="detect.html">Detect</a><a href="understand.html">Understand</a><a href="respond.html">Respond</a><a href="continuous.html">Continuous</a><a href="analysis.html" aria-current="page">Analysis model</a><a href="coverage.html">Coverage</a><a href="roadmap.html">Roadmap</a></nav>
+  </div>
+</header>
+<main id="content">
+<section class="page"><div class="wrap stack">
+<div class="page-head"><p class="eyebrow">06 / Analysis model</p><h1>Evidence first. <span class="soft">Claims second.</span></h1><p class="lead">Each layer keeps the facts, assumptions and confidence of the layer before it.</p></div>
+<div class="table-box"><table>
+<thead><tr><th scope="col">Layer</th><th scope="col">Question</th><th scope="col">V1</th></tr></thead>
+<tbody><tr><td>Configuration facts</td><td>What exists and how is it configured?</td><td><span class="tag in">In scope</span></td></tr><tr><td>Finding engine</td><td>Which rule predicates are satisfied?</td><td><span class="tag in">In scope</span></td></tr><tr><td>Relationship graph</td><td>What is connected to what?</td><td><span class="tag">Future</span></td></tr><tr><td>Permission analysis</td><td>What can an identity actually do?</td><td><span class="tag">Future</span></td></tr><tr><td>Exposure analysis</td><td>Is there a supported path to the resource?</td><td><span class="tag">Future</span></td></tr><tr><td>Attack-path analysis</td><td>What path crosses controls?</td><td><span class="tag">Future</span></td></tr><tr><td>Risk engine</td><td>How does context change priority?</td><td><span class="tag">Future</span></td></tr></tbody></table></div>
+<h2>Levels of a claim</h2>
+<div class="table-box"><table>
+<thead><tr><th scope="col">Level</th><th scope="col">Example</th><th scope="col">Rule</th></tr></thead>
+<tbody><tr><td>Observed</td><td>The parsed rule allows TCP/22 from <code>0.0.0.0/0</code></td><td>State it</td></tr><tr><td>Derived</td><td>Any IPv4 source is permitted by that rule</td><td>State it, naming the source</td></tr><tr><td>Context-dependent</td><td>A resource using the group may be internet-reachable</td><td>Conditional only</td></tr><tr><td>Potential impact</td><td>Exposure can increase attack surface</td><td>Conditional only</td></tr></tbody></table></div>
+<div class="grid2">
+  <div class="card">
+    <h3>Precise, not alarming</h3>
+    <p class="body">A security group proves the group is permissive. It does not prove an attached workload, a public address, a route, a listening service, or exploitability.</p>
+    <ul class="points"><li><span class="dot" aria-hidden="true"></span><span><b>Say:</b> “This rule permits any IPv4 source to attempt TCP/22.”</span></li><li><span class="dot" aria-hidden="true"></span><span><b>Do not say:</b> “This instance is definitely exposed.”</span></li></ul>
+    <div class="chips"><span class="chip">Observed</span><span class="chip">Derived</span><span class="chip">Conditional</span></div>
+  </div>
+  <div class="card">
+    <h3>First rule: public SSH</h3>
+    <p class="body">One finding per matching ingress rule on an <code>aws_security_group</code> that allows <code>0.0.0.0/0</code> on TCP/22 — or on all protocols. Baseline severity High: a policy classification, not proven reachability.</p>
+    <div class="chips"><span class="chip">WCI-AWS-NET-001</span><span class="chip">Network exposure</span><span class="chip">High</span></div>
+  </div>
+</div>
+<pre aria-label="Example finding in JSON">{
+  <span class="k">"finding_id"</span>: <span class="s">"WCI-AWS-NET-001"</span>,
+  <span class="k">"rule_id"</span>: <span class="s">"AWS.NETWORK.SSH_PUBLIC"</span>,
+  <span class="k">"title"</span>: <span class="s">"SSH is publicly permitted by an AWS security-group rule"</span>,
+  <span class="k">"severity"</span>: <span class="s">"HIGH"</span>,
+  <span class="k">"category"</span>: <span class="s">"NETWORK_EXPOSURE"</span>,
+  <span class="k">"resource_address"</span>: <span class="s">"aws_security_group.web"</span>,
+  <span class="k">"evidence"</span>: {
+    <span class="k">"direction"</span>: <span class="s">"ingress"</span>,
+    <span class="k">"protocol"</span>: <span class="s">"tcp"</span>,
+    <span class="k">"from_port"</span>: 22,
+    <span class="k">"to_port"</span>: 22,
+    <span class="k">"source_cidr"</span>: <span class="s">"0.0.0.0/0"</span>,
+    <span class="k">"match_basis"</span>: <span class="s">"tcp_port_range"</span>
+  },
+  <span class="k">"reachability_status"</span>: <span class="s">"UNVERIFIED"</span>,
+  <span class="k">"reason"</span>: <span class="s">"Any IPv4 source is permitted to attempt TCP/22 by this rule."</span>,
+  <span class="k">"remediation"</span>: <span class="s">"Restrict source CIDRs to authorized administration paths."</span>
+}</pre>
+</div></section>
+<div class="wrap"><nav class="pager" aria-label="Pages"><a href="continuous.html"><span class="lbl">← Previous</span><span class="ttl">Continuous</span></a><a class="next" href="coverage.html"><span class="lbl">Next →</span><span class="ttl">Coverage</span></a></nav></div>
+</main>
+<footer class="site-footer">
+  <div class="wrap"><span>WAYNE CLOUD INFRASTRUCTURE</span><span>Open source. Early development. Follow along.</span></div>
+</footer>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
